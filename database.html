@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>database.html</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    padding: 40px;
+    line-height: 1.7;
+}
+h1, h2 {
+    color: #38bdf8;
+}
+pre {
+    background: #020617;
+    padding: 16px;
+    border-radius: 10px;
+    overflow-x: auto;
+    border: 1px solid #1e293b;
+}
+code {
+    color: #22d3ee;
+}
+.section {
+    background: #111827;
+    padding: 24px;
+    border-radius: 14px;
+    margin-bottom: 30px;
+    border: 1px solid #1e293b;
+}
+.note {
+    background: #132a13;
+    border-left: 4px solid #22c55e;
+    padding: 14px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+</style>
+</head>
+<body>
+
+<h1>PostgreSQL + Docker Reference</h1>
+
+<div class="section">
+<h2>1. Start PostgreSQL Container</h2>
+
+<pre><code>docker run --name postgres-demo \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_USER=admin \
+  -e POSTGRES_DB=ai_backend \
+  -p 5432:5432 \
+  -d postgres</code></pre>
+
+<div class="note">
+Mental Model: Docker container = isolated PostgreSQL database server running locally.
+</div>
+</div>
+
+<div class="section">
+<h2>2. Check Running Containers</h2>
+
+<pre><code>docker ps</code></pre>
+</div>
+
+<div class="section">
+<h2>3. Restart Existing Database Container</h2>
+
+<pre><code>docker start postgres-demo</code></pre>
+
+<p>Use this after rebooting machine or after stopping the DB.</p>
+</div>
+
+<div class="section">
+<h2>4. Stop Database</h2>
+
+<pre><code>docker stop postgres-demo</code></pre>
+</div>
+
+<div class="section">
+<h2>5. Open PostgreSQL Shell</h2>
+
+<pre><code>docker exec -it postgres-demo psql -U admin -d ai_backend</code></pre>
+</div>
+
+<div class="section">
+<h2>6. Useful PostgreSQL Commands</h2>
+
+<h3>List Tables</h3>
+<pre><code>\dt</code></pre>
+
+<h3>Create Table</h3>
+<pre><code>CREATE TABLE chats (
+    id SERIAL PRIMARY KEY,
+    message TEXT
+);</code></pre>
+
+<h3>Insert Data</h3>
+<pre><code>INSERT INTO chats (message)
+VALUES ('Hello PostgreSQL');</code></pre>
+
+<h3>Read Data</h3>
+<pre><code>SELECT * FROM chats;</code></pre>
+</div>
+
+<div class="section">
+<h2>7. Delete Container</h2>
+
+<pre><code>docker rm -f postgres-demo</code></pre>
+
+<p>Warning: Removes the container completely.</p>
+</div>
+
+<div class="section">
+<h2>8. Key Mental Models</h2>
+
+<ul>
+<li>Database = persistent state</li>
+<li>Containers are isolated infrastructure services</li>
+<li>AI systems need memory and persistence</li>
+<li>FastAPI will later connect to PostgreSQL</li>
+<li>Most modern AI systems are orchestration + database systems</li>
+</ul>
+
+</div>
+
+</body>
+</html>

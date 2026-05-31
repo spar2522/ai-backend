@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<button onclick="createSockets()">
+    Create 20 sockets
+</button>
+
+<button onclick="checkSocketStatus()">
+    Check socket status
+</button>
+
+<button onclick="sendMessage()">
+    Send message
+</button>
+
+<script>
+
+const sockets = []
+
+let connectedCount = 0
+
+const SOCKET_STATES = {
+    0: "CONNECTING",
+    1: "OPEN",
+    2: "CLOSING",
+    3: "CLOSED"
+}
+
+function createSockets() {
+
+    console.log("Closing old sockets")
+
+    for (const socket of sockets) {
+
+        socket.close()
+    }
+
+    sockets.length = 0
+
+    connectedCount = 0
+
+    console.log("Creating new sockets")
+
+    for (let i = 0; i < 20; i++) {
+
+        const ws = new WebSocket(
+            "ws://localhost:8000/ws/room1"
+        )
+
+        ws.onopen = () => {
+
+            connectedCount++
+
+            console.log(
+                `Socket ${i} connected. Total connected: ${connectedCount}`
+            )
+        }
+
+        ws.onmessage = (event) => {
+
+            console.log(
+                `Socket ${i} received:`,
+                event.data
+            )
+        }
+
+        ws.onerror = (event) => {
+
+            console.error(
+                `Socket ${i} error`,
+                event
+            )
+        }
+
+        ws.onclose = (event) => {
+
+            console.log(
+                `Socket ${i} closed`,
+                event
+            )
+        }
+
+        sockets.push(ws)
+    }
+}
+
+function checkSocketStatus() {
+
+    console.log("----- SOCKET STATUS -----")
+
+    sockets.forEach((socket, index) => {
+
+        console.log(
+            `Socket ${index}: ${SOCKET_STATES[socket.readyState]}`
+        )
+    })
+
+    console.log("-------------------------")
+}
+
+function sendMessage() {
+
+    console.log(
+        "Attempting to send message"
+    )
+
+    const activeSocket = sockets.find(
+        socket => socket.readyState === WebSocket.OPEN
+    )
+
+    if (!activeSocket) {
+
+        console.error(
+            "No OPEN socket available"
+        )
+
+        return
+    }
+
+    console.log(
+        "Sending message using OPEN socket"
+    )
+
+    activeSocket.send(
+        "hello from websocket test"
+    )
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+
+<html><head><title>ai-backend Commands</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 40px;
+  line-height: 1.7;
+}
+h1 {
+  color: #38bdf8;
+  border-bottom: 2px solid #334155;
+  padding-bottom: 10px;
+}
+h2 {
+  color: #f8fafc;
+  margin-top: 30px;
+}
+pre {
+  background: #020617;
+  padding: 16px;
+  border-radius: 10px;
+  overflow-x: auto;
+  border: 1px solid #1e293b;
+}
+code {
+  color: #38bdf8;
+}
+.note {
+  background: #111827;
+  padding: 16px;
+  border-left: 4px solid #22c55e;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+</style>
+</head><body>
+<h1>ai-backend</h1>
+<p>FastAPI backend engineering project.</p>
+
+<h2>Create Environment</h2>
+<pre><code>uv venv
+source .venv/bin/activate</code></pre>
+
+<h2>Install FastAPI</h2>
+<pre><code>uv pip install fastapi uvicorn</code></pre>
+
+<h2>Run Server</h2>
+<pre><code>uvicorn main:app --reload</code></pre>
+
+<h2>URLs</h2>
+<pre><code>http://127.0.0.1:8000
+http://127.0.0.1:8000/docs</code></pre>
+
+<h2>Example Dynamic Route</h2>
+<pre><code>@app.get("/hello/{name}")
+def hello(name: str):
+    return {"message": f"Hello {name}"}</code></pre>
+
+<h2>Example POST API</h2>
+<pre><code>class ChatRequest(BaseModel):
+    message: str
+
+@app.post("/chat")
+def chat(req: ChatRequest):
+    return {
+        "reply": f"You said: {req.message}"
+    }</code></pre>
+
+<div class="note">
+Mental Model: FastAPI = framework, uvicorn = server runtime, nginx = traffic layer.
+</div>
+
+</body></html>
