@@ -1,33 +1,15 @@
-Postgres + Redis: docker compose up -d
+Postgres + Redis: docker compose up -d  
+Fast API start: uvicorn main:app --reload  
 
-## Getting Started
+## Usage  
 
-### Start Services
-```bash
-docker compose up -d
-```
+To run the FastAPI application with multiple workers for testing distributed system communication via Redis:  
+```bash  
+uvicorn main:app --workers 4  
+```  
 
-### Start FastAPI Application
-```bash
-uvicorn main:app --reload
-```
+## Testing WebSockets  
+Navigate to the following file in your browser to test WebSocket connections:  
+`app/websocket/test_websockets.html`  
 
-## Testing
-
-### Run with Multiple Workers
-To test distributed systems with Redis:
-```bash
-uvicorn main:app --workers 4
-```
-
-### Access Test Interface
-Open in browser:
-```
-http://localhost:8000/app/websocket/test_websockets.html
-```
-
-## Notes
-- Ensure Docker is installed for containerized services
-- The `docker-compose.yml` file includes Postgres and Redis configurations
-- For production, consider using gunicorn with appropriate worker settings
-- The `main.py` file contains the FastAPI application entry point
+This setup demonstrates distributed system communication using Redis and multiple FastAPI workers.
