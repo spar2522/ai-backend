@@ -1,27 +1,34 @@
-Distributed System Communication Demo
+Distributed System Testing with FastAPI, Postgres, and Redis
 
 ## Getting Started
 
-To start the Postgres and Redis services using Docker:
+### Prerequisites
+- Docker installed on your system
+- Python 3.8+
+
+### Setup
+1. Start Postgres and Redis containers:
 ```bash
 docker compose up -d
 ```
 
 ## Running the Application
 
-To start the FastAPI server:
+### Basic Start
+To run the FastAPI application with reload:
 ```bash
-uvicorn main:app -reload
+uvicorn main:app --reload
 ```
 
-To run the server with multiple workers for distributed testing:
+### Distributed Testing
+For testing WebSocket communication in distributed systems:
 ```bash
 uvicorn main:app --workers 4
 ```
 
-## Testing WebSockets
-
-After starting the server, navigate to the test interface:
+## Testing WebSocket Communication
+1. Open your browser and navigate to:
 ```
 app/websocket/test_websockets.html
 ```
+This file contains test cases for WebSocket communication across multiple workers.
