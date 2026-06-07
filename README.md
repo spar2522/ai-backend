@@ -1,45 +1,35 @@
-# Project Setup and Usage Guide
+# Project Overview
 
-## Overview
-This project demonstrates WebSocket communication in distributed systems using Redis as a message broker. It includes a FastAPI backend with Postgres and Redis services managed via Docker.
+This project demonstrates a FastAPI application using Postgres and Redis for database and caching needs. It includes WebSocket support for distributed system communication testing.
 
 ## Getting Started
 
-### Prerequisites
-- Docker installed
-- Python 3.8+
-
-### Setup Services
-Start Postgres and Redis containers using Docker:
+### Setting Up Dependencies
+1. Ensure Docker is installed
+2. Start Postgres and Redis with Docker:
 ```bash
 docker compose up -d
 ```
 
-### Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+### Running the Application
 
-## Running the Application
-
-### Basic Startup
-To start the FastAPI server:
+#### Basic Start
 ```bash
 uvicorn main:app --reload
 ```
 
-### Testing Distributed Systems
-For testing WebSocket communication across multiple workers:
+#### Testing with Multiple Workers
+To test distributed WebSocket communication:
 ```bash
 uvicorn main:app --workers 4
 ```
 
-## Testing WebSockets
+#### Testing WebSockets
+After starting the application:
 1. Open `app/websocket/test_websockets.html` in your browser
-2. Observe WebSocket behavior across multiple worker processes
-3. Verify message synchronization through Redis
+2. Test WebSocket connections across multiple workers
 
 ## Notes
-- The `--workers 4` flag demonstrates distributed system testing
-- Redis handles message synchronization between workers
+- The application uses Redis for inter-worker communication
 - Postgres is used for persistent data storage
+- WebSocket testing demonstrates communication in distributed systems
