@@ -1,6 +1,36 @@
-Postgres + Redis: docker compose up -d
-Fast API start : uvicorn main:app --reload 
+# Project Setup and Usage Instructions
 
-To have parallel uvicorn workers to test socket connections and communication in distributed systems using Redis
-uvicorn main:app --workers 4 
-Open the test_websockets.html file in your browser located at app/websocket/test_websockets.html
+## Getting Started
+
+To start the Postgres and Redis services using Docker, run the following command:
+
+```bash
+docker compose up -d
+```
+
+This will start the containers in detached mode.
+
+## Running the FastAPI Application
+
+To start the FastAPI application with auto-reload for development:
+
+```bash
+uvicorn main:app --reload
+```
+
+For testing distributed systems with Redis, run the application with multiple workers:
+
+```bash
+uvicorn main:app --workers 4
+```
+
+## Testing WebSocket Communication
+
+To test WebSocket connections and communication in distributed systems:
+
+1. Open the following file in your browser:
+   ```
+   app/websocket/test_websockets.html
+   ```
+
+This file provides an interface to test WebSocket communication across multiple workers.
