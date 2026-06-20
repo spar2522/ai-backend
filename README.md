@@ -8,15 +8,15 @@ The project is intentionally built using deterministic distributed-system patter
 
 # Features
 
-* GitHub Push Webhook Integration
-* Redis-backed Event Queues
-* Asynchronous Review Workers
-* Local LLM Integration via Ollama
-* Git Worktree Isolation
-* Automated Code Improvements
-* Automated Branch Creation
-* Automated Pull Request Creation
-* Multi-Repository Support
+- GitHub Push Webhook Integration
+- Redis-backed Event Queues
+- Asynchronous Review Workers
+- Local LLM Integration via Ollama
+- Git Worktree Isolation
+- Automated Code Improvements
+- Automated Branch Creation
+- Automated Pull Request Creation
+- Multi-Repository Support
 
 ---
 
@@ -48,16 +48,16 @@ GitHub Pull Request
 
 ## Minimum
 
-* Apple Silicon Mac (M1/M2/M3)
-* 16 GB RAM
-* 20 GB free disk space
+- Apple Silicon Mac (M1/M2/M3)
+- 16 GB RAM
+- 20 GB free disk space
 
 ## Recommended
 
-* Apple Silicon Mac (M2 Pro / M3 Pro or higher)
-* 32 GB RAM
+- Apple Silicon Mac (M2 Pro / M3 Pro or higher)
+- 32 GB RAM
 
-Local LLMs can consume significant memory depending on the model used.
+> **Note:** Local LLMs can consume significant memory depending on the model used.
 
 ---
 
@@ -181,24 +181,24 @@ Install:
 brew install --cask iterm2
 ```
 
-Recommended Profiles:
+### Recommended Profiles
 
-* Redis
-* Ollama
-* API
-* Workers
-* Ngrok
+- Redis
+- Ollama
+- API
+- Workers
+- Ngrok
 
-Optional customizations:
+### Optional Customizations
 
-* Unique colors per profile
-* Custom tab titles
-* Profile badges
+- Unique colors per profile
+- Custom tab titles
+- Profile badges
 
-Useful shortcuts:
+### Useful Shortcuts
 
 | Action           | Shortcut        |
-| ---------------- | --------------- |
+|------------------|-----------------|
 | Next Tab         | Cmd + Shift + ] |
 | Previous Tab     | Cmd + Shift + [ |
 | Vertical Split   | Cmd + D         |
@@ -273,11 +273,11 @@ autodoc-redis
 
 This launches:
 
-* Redis
-* Ollama
-* API
-* Workers
-* ngrok
+- Redis
+- Ollama
+- API
+- Workers
+- ngrok
 
 in dedicated iTerm tabs.
 
@@ -289,11 +289,11 @@ in dedicated iTerm tabs.
 
 Create a Fine-Grained Personal Access Token.
 
-Required permissions:
+### Required Permissions
 
-* Pull Requests
-* Contents
-* Metadata
+- Pull Requests
+- Contents
+- Metadata
 
 Store the token inside:
 
@@ -333,26 +333,24 @@ https://example.ngrok-free.app
 
 Configure GitHub:
 
-```text
-Repository
-→ Settings
-→ Webhooks
-→ Add Webhook
-```
+1. Go to your repository.
+2. Navigate to **Settings**.
+3. Click on **Webhooks**.
+4. Click **Add Webhook**.
 
-Payload URL:
+### Payload URL
 
 ```text
 https://example.ngrok-free.app/github/webhook
 ```
 
-Content Type:
+### Content Type
 
 ```text
 application/json
 ```
 
-Events:
+### Events
 
 ```text
 Push Events
@@ -372,10 +370,8 @@ Example:
 
 ```yaml
 repos:
-
   - github_repo: spar2522/ai-backend
     local_path: /Users/username/ai-lab/ai-backend
-
   - github_repo: spar2522/ai_autodoc
     local_path: /Users/username/ai-lab/ai_autodoc
 
@@ -400,18 +396,18 @@ worktree_root: /Users/username/ai-worktrees
 
 # Supported File Types
 
-Current:
+### Current
 
-* Python
-* Markdown
-* YAML
+- Python
+- Markdown
+- YAML
 
-Planned:
+### Planned
 
-* JavaScript
-* TypeScript
-* Java
-* Go
+- JavaScript
+- TypeScript
+- Java
+- Go
 
 ---
 
@@ -424,8 +420,6 @@ Verify:
 ```bash
 curl http://localhost:11434/api/tags
 ```
-
----
 
 ## Redis Connection Errors
 
@@ -443,8 +437,6 @@ autodoc-redis
 
 is running.
 
----
-
 ## GitHub Authentication Errors
 
 Verify:
@@ -452,8 +444,6 @@ Verify:
 ```bash
 ssh -T git@github.com
 ```
-
----
 
 ## ngrok Not Reachable
 
@@ -469,15 +459,15 @@ works before starting ngrok.
 
 # Roadmap
 
-* Multi-file dependency analysis
-* Review comments on existing PRs
-* Agent-based orchestration
-* LangGraph integration
-* MCP tool integration
-* GitHub App authentication
-* Cloud deployment
-* Human approval workflows
-* Multi-model support
+- Multi-file dependency analysis
+- Review comments on existing PRs
+- Agent-based orchestration
+- LangGraph integration
+- MCP tool integration
+- GitHub App authentication
+- Cloud deployment
+- Human approval workflows
+- Multi-model support
 
 ---
 
@@ -485,11 +475,11 @@ works before starting ngrok.
 
 This project intentionally emphasizes:
 
-* Event-driven architecture
-* Distributed systems concepts
-* Deterministic workflows
-* Queue-based processing
-* Observable execution
+- Event-driven architecture
+- Distributed systems concepts
+- Deterministic workflows
+- Queue-based processing
+- Observable execution
 
 before introducing autonomous agent orchestration.
 
